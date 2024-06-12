@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sheet/Screens/AddWork.dart';
 import 'package:sheet/Screens/ViewWork.dart';
 
-final TextStyle welcomeStyle = GoogleFonts.lato(fontSize: 18);
+final TextStyle welcomeStyle = GoogleFonts.lato(fontSize: 22);
 
 class HomePage extends StatelessWidget {
   static String id = 'HomePage';
@@ -14,12 +14,12 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Welcome',
-          style: TextStyle(fontSize: 30),
+          style: TextStyle(fontSize: 36),
         ),
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(40.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -28,10 +28,18 @@ class HomePage extends StatelessWidget {
                   Navigator.pushNamed(context, AddWork.id);
                 },
                 child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  width: 400, // Increase the width for desktop
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 30), // Increase the padding
                   decoration: BoxDecoration(
-                    color: const Color(0xFFD1E7DD),
+                    gradient: const LinearGradient(
+                      colors: [
+                        Color(0xFF8BC34A),
+                        Color(0xFF4CAF50)
+                      ], // Use a gradient
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: const [
                       BoxShadow(
@@ -45,24 +53,32 @@ class HomePage extends StatelessWidget {
                     child: Text(
                       'Add Work',
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 28, // Increase the font size
                         fontWeight: FontWeight.bold,
-                        color: Colors.green,
+                        color: Colors.white,
                       ),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 40), // Increase the spacing
               GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, ViewWork.id);
                 },
                 child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  width: 400, // Increase the width for desktop
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 30), // Increase the padding
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF8D7DB),
+                    gradient: const LinearGradient(
+                      colors: [
+                        Color(0xFFE91E63),
+                        Color(0xFFC2185B)
+                      ], // Use a gradient
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: const [
                       BoxShadow(
@@ -76,9 +92,9 @@ class HomePage extends StatelessWidget {
                     child: Text(
                       'View Work',
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 28, // Increase the font size
                         fontWeight: FontWeight.bold,
-                        color: Colors.pinkAccent,
+                        color: Colors.white,
                       ),
                     ),
                   ),

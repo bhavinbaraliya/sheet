@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sheet/Provider/UserProvider.dart';
+import 'package:sheet/Provider/getYear.dart';
 import 'package:sheet/Screens/AddWork.dart';
+import 'package:sheet/Screens/DataScreen.dart';
 import 'package:sheet/Screens/HomePage.dart';
+import 'package:sheet/Screens/MonthScreen.dart';
 import 'package:sheet/Screens/SignupPage.dart';
 import 'package:sheet/Screens/ViewWork.dart';
 import 'package:sheet/Screens/loginScreen.dart';
@@ -31,6 +34,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => getName()),
+        ChangeNotifierProvider(
+            create: (context) => getTheTimeOfWorkShobmitted()),
       ],
       child: MaterialApp(
         theme: ThemeData(
@@ -44,6 +49,8 @@ class MyApp extends StatelessWidget {
           HomePage.id: (context) => HomePage(),
           AddWork.id: (context) => AddWork(),
           ViewWork.id: (context) => ViewWork(),
+          MonthScreen.id: (context) => MonthScreen(),
+          Datascreen.id: (context) => Datascreen(),
         },
       ),
     );

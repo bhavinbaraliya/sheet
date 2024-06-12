@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:googleapis/admob/v1.dart';
 
 class SignUpPage extends StatefulWidget {
   static String id = 'signup';
@@ -37,6 +38,7 @@ class _SignUpPageState extends State<SignUpPage> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      appBar: AppBar(),
       backgroundColor: Colors.white,
       body: Center(
         child: Container(

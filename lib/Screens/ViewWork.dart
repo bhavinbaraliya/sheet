@@ -1,61 +1,37 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../Services/firestore.dart' as firestore;
-import '../Services/MonthYear.dart';
+import 'package:provider/provider.dart';
+import 'package:sheet/Provider/getYear.dart';
+import 'package:sheet/Screens/MonthScreen.dart';
 
-class ViewWork extends StatefulWidget {
+class ViewWork extends StatelessWidget {
+  List<String> years = ['2023', '2024', '2025', '2026', '2027'];
   static String id = 'ViewWork';
-
-  @override
-  _ViewWorkState createState() => _ViewWorkState();
-}
-
-class _ViewWorkState extends State<ViewWork> {
-  final db = firestore.Database(user: 'dummy');
-  List<List<Map<String, dynamic>>> works = [];
-  Map<String, List<Map<String, dynamic>>> worksByMonthYear = {};
-
-  @override
-  void initState() {
-    super.initState();
-    fetchWorks();
-  }
-
-  Future<void> fetchWorks() async {
-    groupWorksByMonthYear();
-    setState(() {});
-  }
-
-  void groupWorksByMonthYear() {
-    worksByMonthYear = {};
-    for (var w1 in works) {
-      for (var work in w1) {
-        final monthYear = '${work['month']}/${work['year']}';
-        if (worksByMonthYear.containsKey(monthYear)) {
-          worksByMonthYear[monthYear]!.add(work);
-        } else {
-          worksByMonthYear[monthYear] = [work];
-        }
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('View Work'),
-      ),
-      body: worksByMonthYear.isEmpty
-          ? const Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: worksByMonthYear.length,
-              itemBuilder: (context, index) {
-                final monthYear = worksByMonthYear.keys.toList()[index];
-                final works = worksByMonthYear[monthYear]!;
-                return MonthYearWidget(monthYear: monthYear, works: works);
-              },
-            ),
-    );
+    return Consumer<getTheTimeOfWorkShobmitted>(builder: (BuildContext context,
+        getTheTimeOfWorkShobmitted value, Widget? child) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Select Year'),
+        ),
+        body: ListView.builder(
+          itemCount: years.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Card(
+              child: ListTile(
+                title: Text(years[index]),
+                onTap: () {
+                  value.setYear(years[index]);
+                  Navigator.pushNamed(
+                    context,
+                    MonthScreen.id,
+                  );
+                },
+              ),
+            );
+          },
+        ),
+      );
+    });
   }
 }
